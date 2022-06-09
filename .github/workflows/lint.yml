@@ -24,8 +24,19 @@ jobs:
         with:
           node-version: 'lts/*'
 
-      - run: npm i --no-save markdownlint-cli2
+      - name: Install Linter
+        run: npm i --no-save markdownlint-cli2
 
-      - uses: xt0rted/markdownlint-problem-matcher@b643b0751c371f357690337d4549221347c0e1bc
-      - run: ./node_modules/.bin/markdownlint-cli2-config .github/md-lint.yaml
+      - name: Add Matcher
+        uses: xt0rted/markdownlint-problem-matcher@b643b0751c371f357690337d4549221347c0e1bc
+
+      - name: Run Linter
+        run: ./node_modules/.bin/markdownlint-cli2-config .github/md-lint.yaml
+
+      - name: Parse Results
+        if: success() || failure()
+        uses: xt0rted/markdownlint-problem-matcher@b643b0751c371f357690337d4549221347c0e1bc
+        with:
+          action: remove
+
 
