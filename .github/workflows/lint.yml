@@ -22,7 +22,7 @@ jobs:
       - name: Setup Node
         uses: actions/setup-node@main
         with:
-          node-version: lts
+          node-version: 'lts/*'
 
       - run: npm i --no-save markdownlint-cli2
 
