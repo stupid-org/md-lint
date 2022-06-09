@@ -7,11 +7,12 @@ config:
   MD013:
     line_length: 80
     code_block_line_length: 120
-    strict: false
+    strict: true
     stern: true
 
 globs:
   - '**/*.md'
+
 ignores:
   - 'node_modules/**'
   - 'test/**/*.md'
